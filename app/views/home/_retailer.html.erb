@@ -1,0 +1,105 @@
+<div class="row notification-bar">
+		<div class="col-md-12">
+
+			<h2 class="text-right">Your sales if you accept the current offers: <span class="label label-danger"><%= number_to_currency(current_user.retailer_profile.current_offers_value / 100) %></span></h2>
+			<h2 class="text-right">Total to your account: <span class="label label-danger"><%= number_to_currency(current_user.retailer_profile.current_offers_less_fee / 100) %></span></h2>
+			<br>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-3">
+		<h2>Menu</h2>
+		<ul class="nav nav-pills nav-stacked">
+			<li class="active"><a href="#">Current offers <span class="badge pull-right"><%= current_user.retailer_profile.offers.count %></span></a></li>
+			<li><a href="#">Accepted offers <span class="badge pull-right">0</span></a></li>
+			<li><a href="#">Payments made <span class="badge pull-right">0</span></a></li>
+			<li><a href="#">Completed offers</a></li>
+			<li><a href="#">Rejected offers</a></li>
+		</ul>
+
+		</div>
+		<div class="col-md-9">
+			<% if !current_user.retailer_profile %>
+				<p class="lead">Please complete your profile so that you can accept your offers.</p>
+				<div class="row">
+					<div class="col-md-6">
+						<%= render 'retailer_profiles/form' %>
+					</div>
+				</div>
+			<% end %>
+
+			<h2>Current offers <small>waiting for your approval</small></h2>
+			<% if current_user.retailer_profile.offers.live.awaiting_acceptance_not_rejected.count < 1 %>
+				<p>No offers currently</p>
+			<% else %>
+				<table class="table table-hover">
+					<thead>
+					<tr>
+						<th>Item</th>
+						<th><p class="text-right">Asking price</p></th>
+						<th><p class="text-right">Offered</p></th>
+						<th><p class="text-right">Expires</p></th>
+						<th><p class="text-right">Accept or Reject</p></th>
+					</tr>
+						</thead>
+						<tbody>
+					<% current_user.retailer_profile.offers.live.awaiting_acceptance_not_rejected.each do |offer| %>
+						<tr>
+							<td><%= link_to offer.product_name, offer.url, target: '_blank' %></td>
+							<td><p class="text-right"><%= number_to_currency(offer.price / 100) %></p></td>
+							<td><p class="text-right"><%= number_to_currency(offer.offer / 100) %></p></td>
+							<td><p class="text-right"><%= (offer.expiry.to_i - DateTime.now.to_i) / 1.hour %> hours</p></td>
+							<td>
+								<p class="text-right">
+									<%= link_to "Accept", accept_offer_path(offer), method: :post, class: 'btn btn-success' %>
+									<%= link_to "Reject", reject_offer_path(offer), method: :post, class: 'btn btn-danger' %>
+								</p>
+							</td>
+						</tr>
+					<% end %>
+					</tbody>
+					<thead>
+					<tr>
+						<th></th>
+						<th></th>
+						<th><p class="text-right"><%= number_to_currency(current_user.retailer_profile.current_offers_value / 100) %></p></th>
+						<th></th>
+						<th></th>
+					</thead>
+				</table>
+			<% end %>
+
+			<h2>Accepted offers <small>waiting for payment</small></h2>
+			<% if current_user.retailer_profile.offers.live.accepted.awaiting_payment.count < 1 %>
+				<p>No offers currently awaiting payment</p>
+			<% else %>
+				<table class="table table-hover">
+					<thead>
+					<tr>
+						<th>Item</th>
+						<th><p class="text-right">To be paid</p></th>
+						<th><p class="text-right">Reject</p></th>
+					</tr>
+						</thead>
+						<tbody>
+					<% current_user.retailer_profile.offers.live.accepted.awaiting_payment.each do |offer| %>
+						<tr>
+							<td><%= link_to offer.product_name, offer.url, target: '_blank' %></td>
+							<td><p class="text-right"><%= number_to_currency((offer.offer - offer.fee) / 100) %></p></td> 
+							<td>
+								<p class="text-right">
+									
+									<%= link_to "Reject", reject_offer_path(offer), method: :post, class: 'btn btn-danger' %>
+								</p>
+							</td>
+						</tr>
+					<% end %>
+					</tbody>
+				</table>
+			<% end %>
+
+			<h2>Payments made <small>waiting for posting</small></h2>
+
+
+		</div>

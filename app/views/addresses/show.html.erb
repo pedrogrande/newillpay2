@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @address.name %>
+</p>
+
+<p>
+  <strong>Address1:</strong>
+  <%= @address.address1 %>
+</p>
+
+<p>
+  <strong>Address2:</strong>
+  <%= @address.address2 %>
+</p>
+
+<p>
+  <strong>Suburb:</strong>
+  <%= @address.suburb %>
+</p>
+
+<p>
+  <strong>Postcode:</strong>
+  <%= @address.postcode %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @address.state %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @address.country %>
+</p>
+
+<%= link_to 'Edit', edit_address_path(@address) %> |
+<%= link_to 'Back', addresses_path %>

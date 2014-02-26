@@ -1,0 +1,27 @@
+<h1>Listing shopper_profiles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shopper_profiles.each do |shopper_profile| %>
+      <tr>
+        <td><%= shopper_profile.user %></td>
+        <td><%= link_to 'Show', shopper_profile %></td>
+        <td><%= link_to 'Edit', edit_shopper_profile_path(shopper_profile) %></td>
+        <td><%= link_to 'Destroy', shopper_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Shopper profile', new_shopper_profile_path %>

@@ -11,7 +11,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140122001059) do
+ActiveRecord::Schema.define(version: 20140226000322) do
+
+  create_table "addresses", force: true do |t|
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "suburb"
+    t.string   "postcode"
+    t.string   "state"
+    t.string   "country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "shopper_profile_id"
+  end
+
+  add_index "addresses", ["shopper_profile_id"], name: "index_addresses_on_shopper_profile_id"
+
+  create_table "offers", force: true do |t|
+    t.integer  "shopper_profile_id"
+    t.integer  "retailer_profile_id"
+    t.string   "product_name"
+    t.string   "url"
+    t.text     "description"
+    t.integer  "price"
+    t.integer  "offer"
+    t.datetime "expiry"
+    t.integer  "fee"
+    t.datetime "accepted"
+    t.datetime "paid"
+    t.datetime "sent"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image"
+    t.integer  "expiry_days"
+    t.datetime "rejected"
+  end
+
+  add_index "offers", ["retailer_profile_id"], name: "index_offers_on_retailer_profile_id"
+  add_index "offers", ["shopper_profile_id"], name: "index_offers_on_shopper_profile_id"
+
+  create_table "retailer_profiles", force: true do |t|
+    t.integer  "user_id"
+    t.string   "business_name",   null: false
+    t.string   "website",         null: false
+    t.string   "phone"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "suburb"
+    t.string   "postcode"
+    t.string   "country"
+    t.string   "paypal_username"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "retailer_profiles", ["user_id"], name: "index_retailer_profiles_on_user_id"
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -23,6 +78,14 @@ ActiveRecord::Schema.define(version: 20140122001059) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
+
+  create_table "shopper_profiles", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "shopper_profiles", ["user_id"], name: "index_shopper_profiles_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -38,6 +101,7 @@ ActiveRecord::Schema.define(version: 20140122001059) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.string   "user_type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

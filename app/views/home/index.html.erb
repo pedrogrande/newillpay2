@@ -1,4 +1,16 @@
-<h3>Home</h3>
-<% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user %></p>
+<% if !user_signed_in? %>
+	<h3>I'll Pay</h3>
+	<%= link_to "I'm a retailer", new_user_registration_path(user_type: 'retailer'), class: 'btn btn-success' %>
+	<%= link_to "I'm a shopper", new_user_registration_path(user_type: 'shopper'), class: 'btn btn-success' %>
 <% end %>
+<% if user_signed_in? %>
+	<h2>My I'll Pay Dashboard</h2>
+	<% if current_user.has_role? :shopper %>
+		<%= render 'home/shopper' %>
+	<% end %>
+	<% if current_user.has_role? :retailer %>
+		<%= render 'home/retailer' %>
+	<% end %>
+<% end %>
+
+

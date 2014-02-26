@@ -1,0 +1,49 @@
+<h1>Listing offers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Shopper profile</th>
+      <th>Retailer profile</th>
+      <th>Product name</th>
+      <th>Url</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Offer</th>
+      <th>Expiry</th>
+      <th>Fee</th>
+      <th>Accepted</th>
+      <th>Paid</th>
+      <th>Sent</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @offers.each do |offer| %>
+      <tr>
+        <td><%= offer.shopper_profile %></td>
+        <td><%= offer.retailer_profile %></td>
+        <td><%= offer.product_name %></td>
+        <td><%= offer.url %></td>
+        <td><%= offer.description %></td>
+        <td><%= offer.price %></td>
+        <td><%= offer.offer %></td>
+        <td><%= offer.expiry %></td>
+        <td><%= offer.fee %></td>
+        <td><%= offer.accepted %></td>
+        <td><%= offer.paid %></td>
+        <td><%= offer.sent %></td>
+        <td><%= link_to 'Show', offer %></td>
+        <td><%= link_to 'Edit', edit_offer_path(offer) %></td>
+        <td><%= link_to 'Destroy', offer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Offer', new_offer_path %>

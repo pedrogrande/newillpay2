@@ -1,0 +1,45 @@
+<h1>Listing retailer_profiles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Business name</th>
+      <th>Website</th>
+      <th>Phone</th>
+      <th>Address1</th>
+      <th>Address2</th>
+      <th>Suburb</th>
+      <th>Postcode</th>
+      <th>Country</th>
+      <th>Paypal username</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @retailer_profiles.each do |retailer_profile| %>
+      <tr>
+        <td><%= retailer_profile.user %></td>
+        <td><%= retailer_profile.business_name %></td>
+        <td><%= retailer_profile.website %></td>
+        <td><%= retailer_profile.phone %></td>
+        <td><%= retailer_profile.address1 %></td>
+        <td><%= retailer_profile.address2 %></td>
+        <td><%= retailer_profile.suburb %></td>
+        <td><%= retailer_profile.postcode %></td>
+        <td><%= retailer_profile.country %></td>
+        <td><%= retailer_profile.paypal_username %></td>
+        <td><%= link_to 'Show', retailer_profile %></td>
+        <td><%= link_to 'Edit', edit_retailer_profile_path(retailer_profile) %></td>
+        <td><%= link_to 'Destroy', retailer_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Retailer profile', new_retailer_profile_path %>

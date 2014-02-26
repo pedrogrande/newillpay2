@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Shopper profile:</strong>
+  <%= @offer.shopper_profile %>
+</p>
+
+<p>
+  <strong>Retailer profile:</strong>
+  <%= @offer.retailer_profile %>
+</p>
+
+<p>
+  <strong>Product name:</strong>
+  <%= @offer.product_name %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @offer.url %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @offer.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @offer.price %>
+</p>
+
+<p>
+  <strong>Offer:</strong>
+  <%= @offer.offer %>
+</p>
+
+<p>
+  <strong>Expiry:</strong>
+  <%= @offer.expiry %>
+</p>
+
+<p>
+  <strong>Fee:</strong>
+  <%= @offer.fee %>
+</p>
+
+<p>
+  <strong>Accepted:</strong>
+  <%= @offer.accepted %>
+</p>
+
+<p>
+  <strong>Paid:</strong>
+  <%= @offer.paid %>
+</p>
+
+<p>
+  <strong>Sent:</strong>
+  <%= @offer.sent %>
+</p>
+
+<%= link_to 'Edit', edit_offer_path(@offer) %> |
+<%= link_to 'Back', offers_path %>

@@ -1,0 +1,2 @@
+module ShopperProfilesHelper
+end

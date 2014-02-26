@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shopper_profile_id: 
+  retailer_profile_id: 
+  product_name: MyString
+  url: MyString
+  description: MyText
+  price: 1
+  offer: 1
+  expiry: 2014-02-26 00:44:01
+  fee: 1
+  accepted: 2014-02-26 00:44:01
+  paid: 2014-02-26 00:44:01
+  sent: 2014-02-26 00:44:01
+
+two:
+  shopper_profile_id: 
+  retailer_profile_id: 
+  product_name: MyString
+  url: MyString
+  description: MyText
+  price: 1
+  offer: 1
+  expiry: 2014-02-26 00:44:01
+  fee: 1
+  accepted: 2014-02-26 00:44:01
+  paid: 2014-02-26 00:44:01
+  sent: 2014-02-26 00:44:01
