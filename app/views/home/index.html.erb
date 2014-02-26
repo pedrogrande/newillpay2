@@ -8,7 +8,7 @@
 	<%= link_to "I'm a shopper", new_user_registration_path(user_type: 'shopper'), class: 'btn btn-success' %>
 <% end %>
 <% if user_signed_in? %>
-	<% if current_user.shopper_profile OR current_user.retailer_profile %>
+	<% if current_user.shopper_profile or current_user.retailer_profile %>
 		<h2>My I'll Pay Dashboard</h2>
 		<% if current_user.has_role? :shopper %>
 			<%= render 'home/shopper' %>
